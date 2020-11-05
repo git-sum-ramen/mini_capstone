@@ -1,1 +1,7 @@
-{mesage: "hello"}
+{
+  id: @product.id,
+  price: @product.price,
+  description: @product.description,
+  image_url: @product.image_url,
+  name: @product.name
+}
