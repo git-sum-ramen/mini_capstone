@@ -6,5 +6,6 @@
   description: product.description,
   tax: number_to_currency(product.tax),
   total: number_to_currency(product.total),
-  is_discounted: product.is_discounted?
+  is_discounted: product.is_discounted?,
+  supplier: product.supplier.name
 }
