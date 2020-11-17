@@ -1,7 +1,7 @@
 {
   id: product.id,
   name: product.name,
-  price: number_to_currency(product.price),
+  price: product.price,
   image_url: product.image_url,
   description: product.description,
   tax: number_to_currency(product.tax),

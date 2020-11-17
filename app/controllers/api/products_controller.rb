@@ -6,6 +6,7 @@ class Api::ProductsController < ApplicationController
     else
       @products = Product.all
     end
+    
 
     if params[:sort] && params[:sort_order]
       @products = @products.order(params[:sort] => params[:sort_order])
