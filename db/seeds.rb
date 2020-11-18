@@ -8,13 +8,17 @@
 #   {name: "Yoda sleeping bag", price: "40.0", image_url: "https://staticdelivery.nexusmods.com/mods/1151/images/12353-0-1461721930.png", description: "For real", inventory: nil}
 # ])
 
+# products = Product.all
+
+# products.each do |product|
+#   id = rand(1..2)
+#   product.update(supplier_id: id)
+# end
+
 products = Product.all
 
 products.each do |product|
-  id = rand(1..2)
-  product.update(supplier_id: id)
+  Image.create!(url: product.image_url, product_id: product.id)
 end
-
-
 
 
