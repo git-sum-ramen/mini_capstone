@@ -2,23 +2,31 @@ class Api::ProductsController < ApplicationController
   before_action :authenticate_admin, only: [:destroy]
   
   def index
-    # @products = Product.all
-    if params[:search]
-      @products = Product.where("name ILIKE ?", "%#{params[:search]}%")
+    # p params[:category] # == "Home"
+    
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      @products = category.products
     else
       @products = Product.all
     end
     
+    # if params[:search]
+    #   @products = Product.where("name ILIKE ?", "%#{params[:search]}%")
+    # else
+    #   @products = Product.all
+    # end
+    
 
-    if params[:sort] && params[:sort_order]
-      @products = @products.order(params[:sort] => params[:sort_order])
-    else
-      @products = @products.order(id: :asc)
-    end
+    # if params[:sort] && params[:sort_order]
+    #   @products = @products.order(params[:sort] => params[:sort_order])
+    # else
+    #   @products = @products.order(id: :asc)
+    # end
 
-    if params[:discount] == "true"
-      @products = @products.where("price < 20")
-    end
+    # if params[:discount] == "true"
+    #   @products = @products.where("price < 20")
+    # end
 
     
     
