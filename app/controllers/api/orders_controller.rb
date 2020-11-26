@@ -31,11 +31,12 @@ class Api::OrdersController < ApplicationController
     )
     @order.save
 
-    carted_products.each do |cp|
-      # change the status
-      cp.update(status: "purchased", order_id: @order.id)
-      # add the order id
-    end
+    carted_products.update_all(status: "purchased", order_id: @order.id)
+    # carted_products.each do |cp|
+    #   # change the status
+    #   cp.update(status: "purchased", order_id: @order.id)
+    #   # add the order id
+    # end
     
     render 'show.json.jb'
   end
