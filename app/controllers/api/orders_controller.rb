@@ -6,11 +6,28 @@ class Api::OrdersController < ApplicationController
   end
   
   def create
+    # how can i figure out what's in the user's shopping cart?
+    carted_products = current_user.carted_products.where(status: "carted")
+    
+    subtotal = 0
+    carted_products.each do |cp|
+      subtotal += cp.product.price * cp.quantity
+    end
+
+    tax_rate = 0.09
+    
+    tax = subtotal * tax_rate
+    total = tax + subtotal
+    
+    # p "HERE IS THE SUM"
+    # p sum
+    # p "/HERE IS THE SUM"
+    
     @order = Order.new(
       user_id: current_user.id,
-      subtotal: 100,
-      tax: 10,
-      total: 110,      
+      subtotal: subtotal,
+      tax: tax,
+      total: total,      
     )
     @order.save
     
